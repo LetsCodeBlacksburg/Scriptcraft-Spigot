@@ -1,24 +1,23 @@
 var items = require('items');
 var entities = require('entities');
+var bkEnchant = org.bukkit.enchantments.Enchantment;
 
 function onArmSwing( event ) {
-  console.log('player swing!');
   var player = event.player;
   var itemInHand = player.getItemInHand();
-/*  if ( player.getHealth() == 20 && isFireballSword(itemInHand) )*/
-  /*{*/
+  if ( player.getHealth() == 20 && isFireballSword(itemInHand) )
+  {
     shootFireball(player);
-  //}
+  }
 }
 
+events.playerInteract( onArmSwing );
+
 function isFireballSword( item ) {
-  if (item && item.getType() == items.diamondSword() ) 
+  var luckLevel = item.getEnchantmentLevel(bkEnchant.LUCK)
+  if (item.getType() == items.diamondSword() && luckLevel == 3 ) 
   {
-    var enchantment = item.getEnchantment();
-    if (enchantment && enchantment.getLevel() == 3 && 
-	    enchantment.getType() == cmEnchantment.LuckOfTheSea) {
-      return true;
-    }
+    return true;
   }
   return false;
 }
@@ -31,15 +30,12 @@ function shootFireball(player) {
   fireball.setShooter(player);
 }
 
-events.playerInteract( onArmSwing );
-
 function addRecipe() {
   var item = items.diamondSword(1);
 
   var meta = item.getItemMeta();
-  meta.setDisplayName("§aFireball Sword");
+  meta.setDisplayName("Fireball Sword");
   item.setItemMeta(meta);
-  var bkEnchant = org.bukkit.enchantments.Enchantment;
   item.addUnsafeEnchantment(bkEnchant.LUCK, 3);
 
   var fireballSwordRecipe = new Object();
