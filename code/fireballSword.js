@@ -51,5 +51,3 @@ recipe.ingredients = {
 
 var recipes = require('recipes');
 recipes.add( recipe );
-
-addRecipe();
