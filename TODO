@@ -1,0 +1,10 @@
+SLIDES
+======
+* Remove unused reference to fling() 
+* Highlight `require items` line in red
+* `Check for items in hand` slide has typo
+* Player sneak event title should reference crouching instead 
+
+CODE
+====
+* Remove addRecipe() line 
